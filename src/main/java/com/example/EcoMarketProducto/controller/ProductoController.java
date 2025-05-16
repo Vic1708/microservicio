@@ -60,14 +60,15 @@ public class ProductoController {
         }
     }
 
+
     // DELETE: Eliminar producto por ID
-    //@DeleteMapping("/{id}")
-    //public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
-       // if (productoService.findById(id).isPresent()) {
-         //   productoService.deleteById(id);
-          //  return ResponseEntity.noContent().build();
-       // } else {
-        //    return ResponseEntity.notFound().build();
-        //}
-   // }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
+        if (productoService.findById(id).isPresent()) {
+            productoService.delete(id);
+            return ResponseEntity.noContent().build(); // 204 No Content
+        } else {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
+    }
 }
